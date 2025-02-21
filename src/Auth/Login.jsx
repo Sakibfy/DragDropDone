@@ -1,9 +1,10 @@
+import SocialLogin from "./SocialLogin";
 
 
 const Login = () => {
   return (
     <div>
-      
+     <SocialLogin></SocialLogin>
     </div>
   );
 };
