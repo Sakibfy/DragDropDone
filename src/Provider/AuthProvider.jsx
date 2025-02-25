@@ -33,15 +33,21 @@ const AuthProvider = ({ children }) => {
   }
     
   useEffect(() => {
-  const unsubscribe =  onAuthStateChanged(auth, currentUser => {
-    setUser(currentUser);
-      
-  }
-  )
-    return () => {
-      return unsubscribe();
-    }
-},[])
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser({
+          userId: currentUser.uid,  // Unique Firebase User ID
+          email: currentUser.email,
+          displayName: currentUser.displayName,
+        });
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup subscription
+  }, []);
 
 
   const authInfo = {
