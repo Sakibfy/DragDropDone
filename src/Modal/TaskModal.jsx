@@ -22,11 +22,8 @@ const TaskModal = ({ isOpen, closeModal, task, onUpdate }) => {
 
     try {
       const updatedTask = { title, description, category };
-
-      // Send update request to the backend
       await axiosPublic.put(`/tasks/${task._id}`, updatedTask);
 
-      // Call the parent's onUpdate callback to update the task instantly in the UI
       onUpdate({ ...task, ...updatedTask });
 
       closeModal(); // Close modal after update
@@ -40,24 +37,24 @@ const TaskModal = ({ isOpen, closeModal, task, onUpdate }) => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-5 rounded-lg shadow-lg w-96">
-        <h2 className="text-xl font-bold mb-3">Edit Task</h2>
-        <form onSubmit={handleUpdate}>
+        <h2 className="text-2xl font-bold mb-3 text-center">Edit Task</h2>
+        <form onSubmit={handleUpdate} >
           <input
             type="text"
             placeholder="Task Title"
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded-xl my-2"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
           <textarea
             placeholder="Task Description"
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded-xl mb-2"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <select
-            className="w-full p-2 border rounded mb-2"
+            className="w-full p-2 border rounded-xl my-2"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -65,15 +62,15 @@ const TaskModal = ({ isOpen, closeModal, task, onUpdate }) => {
             <option value="In Progress">In Progress</option>
             <option value="Done">Done</option>
           </select>
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-end gap-2 mt-3">
             <button
               type="button"
               onClick={closeModal}
-              className="px-4 py-2 bg-gray-500 text-white rounded"
+              className="px-4 py-2 bg-red-500 text-white rounded"
             >
               Cancel
             </button>
-            <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+            <button type="submit" className="px-4 py-2 bg-[#10b981] text-white rounded">
               Update Task
             </button>
           </div>

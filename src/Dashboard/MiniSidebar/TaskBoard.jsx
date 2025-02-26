@@ -7,6 +7,8 @@ import TaskModal from "../../Modal/TaskModal";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hook/useAxiosPublic";
+import useAuth from "../../Auth/useAuth";
+
 
 const categories = ["To-Do", "In Progress", "Done"];
 
@@ -16,7 +18,7 @@ const TaskBoard = () => {
   const [selectedTask, setSelectedTask] = useState(null); // For editing tasks
   const axiosPublic = useAxiosPublic();
 
-  console.log(tasks);
+//  const [user, loading] = useAuth()
 
   // Handle Drag and Drop
   const onDragEnd = async (result) => {
@@ -78,21 +80,22 @@ const TaskBoard = () => {
     <div className="w-11/12 m-auto md:my-20 my-7">
       <div className="text-end mb-5">
         <Link to="/addtask">
-          <button className="btn">Add Task</button>
+          <button className="p-3 rounded-xl bg-[#10b981] text-white">Add Task</button>
         </Link>
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex gap-6">
+        <div className="md:flex gap-6  w-full mx-auto">
           {categories.map((category) => (
             <Droppable key={category} droppableId={category}>
               {(provided) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="w-1/3 bg-gray-100 p-4 rounded"
+                  className="md:w-1/3 bg-gray-300 my-5 p-4 rounded"
                 >
-                  <h2 className="text-lg font-bold mb-2">{category}</h2>
+                  <h2 className="text-lg text-center font-bold mb-2 ">{category}</h2>
+                  <hr c className="my-2"/>
                   {tasks
                     .filter((task) => task.category === category)
                     .map((task, index) => (
@@ -102,10 +105,10 @@ const TaskBoard = () => {
            ref={provided.innerRef}
            {...provided.draggableProps}
            {...provided.dragHandleProps}
-           className="bg-blue-300 p-3 rounded shadow mb-2"
+           className="bg-blue-200 text-center space-y-3 p-3 rounded shadow mb-2 md:h-[180px] "
          >
-           <h3 className="font-semibold">{task.title}</h3>
-           <p className="text-sm text-gray-600">{task.description}</p>
+           <h3 className="font-semibold text-xl">{task.title}</h3>
+           <p className="text-[17px] text-gray-700">{task.description}</p>
            <p className="text-sm text-gray-600">
              {new Date(task.timestamp).toLocaleString()}
            </p>
