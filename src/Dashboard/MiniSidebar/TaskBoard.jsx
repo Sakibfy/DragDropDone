@@ -7,15 +7,14 @@ import TaskModal from "../../Modal/TaskModal";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hook/useAxiosPublic";
-import useAuth from "../../Auth/useAuth";
 
 
 const categories = ["To-Do", "In Progress", "Done"];
 
 const TaskBoard = () => {
-  const [tasks, setTasks, refetch] = useTashBoard(); // Fixed destructuring
+  const [tasks, setTasks, refetch] = useTashBoard(); 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTask, setSelectedTask] = useState(null); // For editing tasks
+  const [selectedTask, setSelectedTask] = useState(null);
   const axiosPublic = useAxiosPublic();
 
 //  const [user, loading] = useAuth()
@@ -23,7 +22,7 @@ const TaskBoard = () => {
   // Handle Drag and Drop
   const onDragEnd = async (result) => {
     const { source, destination, draggableId } = result;
-    if (!destination) return; // If dropped outside, do nothing
+    if (!destination) return; 
 
     const movedTask = tasks.find((task) => task._id === draggableId);
     if (!movedTask) return;
