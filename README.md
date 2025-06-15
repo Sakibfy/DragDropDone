@@ -1,21 +1,26 @@
-📝 Task Management Application
-A modern and user-friendly Task Management Application built with React, Express.js, and MongoDB. Users can add, edit, delete, and reorder tasks using a smooth drag-and-drop interface.
+# 📋 TaskFlow – Smart Kanban Board
 
-🚀 Live Demo   https://task-haven-6fa59.web.app
-🔗 Live App
+## 1. Project Overview
+**TaskFlow** is an intuitive Kanban-style task management app built with the MERN stack.  
+It enables users to register/login, create tasks (with title, description, due date), and seamlessly drag & drop tasks across three columns: **To Do**, **In Progress**, and **Completed**.
 
-📦 Dependencies
-Frontend Dependencies:
-React.js (Vite)
-Tailwind CSS
-React Query (TanStack Query)
-React Beautiful DnD (Drag-and-Drop)
-Firebase Authentication
-Axios
-Backend Dependencies:
-Express.js
-MongoDB (Native Driver)
-Firebase Admin SDK (For user authentication)
-CORS
-Dotenv
-Nodemon
+---
+
+## 2. Tech Stack
+
+| Layer       | Technology                                      |
+|------------|--------------------------------------------------|
+| Frontend    | React, Tailwind CSS, React Router, Framer Motion |
+| Backend     |  Express.js                             |
+| Database    | MongoDB with Mongoose                           |
+| Auth        | JWT (JSON Web Tokens), bcrypt                  |
+| Deployment  | Vercel (frontend), Render/Heroku (backend)      |
+
+---
+
+## 3. Setup Instructions
+
+### 🛠 Prerequisites
+- Node.js & npm
+- MongoDB URI (e.g., MongoDB Atlas or local)
+

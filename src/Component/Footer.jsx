@@ -1,3 +1,4 @@
+import navbarlogo from '../assets/nav.logo (2).png'
 
 
 const Footer = () => {
@@ -21,7 +22,7 @@ const Footer = () => {
                   href="javascript:void(0)"
                 >
                 
-                 Task Haven
+                  <img className='w-28' src={navbarlogo} alt="" />
                 </a>
                 <p>
                   Expertly made, responsive, accessible components in React and

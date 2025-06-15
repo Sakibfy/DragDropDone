@@ -1,19 +1,48 @@
-import { Link } from 'react-router-dom';
-import bannerbg from '../../src/assets/hero-asset.png'
-import { FaLongArrowAltRight } from 'react-icons/fa';
+// Banner.jsx
+import { Link } from "react-router-dom";
+import bannerbg from "../../src/assets/App Logo with Cool Blue and Green Design.png";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Banner = () => {
- 
-  
   return (
-    <div className='max-w-3xl mx-auto text-center relative'>
-      <h1 className='text-2xl md:text-5xl font-bold '>Boost Productivity with Smart Task Management</h1>
-  
-      <Link to={'/addtask'}>
-        <button className='inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition duration-300 rounded-full whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none my-4 md:my-5 md:text-xl'>Try It Now <FaLongArrowAltRight className='md:text-2xl text-xl mt-1' /> </button>
-      </Link>
-      <img src={bannerbg} alt="" />
-    </div>
+    <section className="max-w-6xl mx-auto p-6 flex flex-col-reverse md:flex-row items-center gap-8">
+      {/* Left – Animated Text */}
+      <motion.div
+        className="flex-1 text-left space-y-6"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+          Boost Productivity with Smart Task Management
+        </h1>
+        <p className="text-lg text-gray-600">
+          Organize your workflow effortlessly with our intuitive Kanban‑style board.
+        </p>
+        <Link to="/addtask">
+          <button className="inline-flex items-center gap-2 px-6 mt-5 py-3 bg-[#2c918b] text-white font-medium rounded-2xl transition">
+            Get Started <FaLongArrowAltRight className="text-xl" />
+          </button>
+        </Link>
+      </motion.div>
+
+      {/* Right – Animated Image */}
+      <motion.div
+        className="flex-1"
+        initial={{ opacity: 0, x: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 1.0, ease: "easeOut" }}
+      >
+        <img
+          src={bannerbg}
+          alt="Banner graphic"
+          className="w-full h-auto rounded-lg shadow-lg object-cover object-left lg:object-center"
+        />
+      </motion.div>
+    </section>
   );
 };
 
