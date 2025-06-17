@@ -1,26 +1,48 @@
-# 📋 TaskFlow – Smart Kanban Board
+# 📦 TaskFlow – Smart Kanban Board
 
-## 1. Project Overview
-**TaskFlow** is an intuitive Kanban-style task management app built with the MERN stack.  
-It enables users to register/login, create tasks (with title, description, due date), and seamlessly drag & drop tasks across three columns: **To Do**, **In Progress**, and **Completed**.
-
----
-
-## 2. Tech Stack
-
-| Layer       | Technology                                      |
-|------------|--------------------------------------------------|
-| Frontend    | React, Tailwind CSS, React Router, Framer Motion |
-| Backend     |  Express.js                             |
-| Database    | MongoDB with                            |
-| Auth        | JWT (JSON Web Tokens),                  |
-| Deployment  | Vercel (frontend), Render/Heroku (backend)      |
+## 🚀 Project Overview
+**TaskFlow** is a MERN‑stack Kanban board app designed for task management with smooth drag‑and‑drop interfaces. Users can register, log in, and organize tasks across **To Do**, **In Progress**, and **Completed** columns.
 
 ---
 
-## 3. Setup Instructions
+## ⚙️ Tech Stack
+- **Frontend**: React, Tailwind CSS, React Router, Framer Motion  
+- **Backend**:  Express.js  
+- **Database**: MongoDB 
+- **Authentication**: Firebase Auth (email/password )  
+- **HTTP Client**: Axios (with Axios hook)  
+- **Deployment**: Frontend on Vercel, Backend on Render/Heroku  
+- **Notifications**: react-toastify, SweetAlert2
 
-### 🛠 Prerequisites
-- Node.js & npm
-- MongoDB URI (e.g., MongoDB Atlas or local)
+---
 
+## 🛠️ Setup Instructions
+
+### 1. Clone & Prepare
+```bash
+git clone Saver side: https://github.com/Sakibfy/DragDropDone-server.git
+git clone Clint side: https://github.com/Sakibfy/DragDropDone.git
+
+
+Frontend Setup
+
+cd ../client
+npm install
+cp .env.example .env
+# Set:
+# VITE_API_URL=http://localhost:5000
+npm run dev
+
+ Backend Setup
+
+cd server
+npm install
+cp .env.example .env
+# Set environment variables:
+# MONGO_URI=your-mongodb-uri
+# PORT=3000
+npm run dev
+
+
+
+Live Link : https://task-haven-6fa59.web.app
