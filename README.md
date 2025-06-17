@@ -12,8 +12,8 @@ It enables users to register/login, create tasks (with title, description, due d
 |------------|--------------------------------------------------|
 | Frontend    | React, Tailwind CSS, React Router, Framer Motion |
 | Backend     |  Express.js                             |
-| Database    | MongoDB with Mongoose                           |
-| Auth        | JWT (JSON Web Tokens), bcrypt                  |
+| Database    | MongoDB with                            |
+| Auth        | JWT (JSON Web Tokens),                  |
 | Deployment  | Vercel (frontend), Render/Heroku (backend)      |
 
 ---

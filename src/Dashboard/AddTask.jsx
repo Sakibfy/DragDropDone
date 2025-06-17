@@ -43,9 +43,9 @@ const navigate = useNavigate()
      
           <div  className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="bg-gray-900 bg-opacity-50 absolute inset-0"></div>
-      <div className="bg-white p-6 rounded-lg border-2 border-gray-500 shadow-inner w-96 relative z-10">
-       <Link to={'/'}> <span className="cursor-pointer"><FaArrowLeft></FaArrowLeft></span></Link>
-              <h2 className="  mb-4 text-2xl text-center font-bold">Add New Task</h2>
+      <div className="bg-gray-600 p-6 rounded-lg border-2 border-gray-500 shadow-inner w-96 relative z-10">
+       <Link to={'/taskbord'}> <span className="cursor-pointer text-white"><FaArrowLeft></FaArrowLeft></span></Link>
+              <h2 className="  mb-4 text-2xl text-white text-center font-bold">Add New Task</h2>
     
               <form onSubmit={handleSubmit}>
                 {/* Title Input */}
@@ -76,7 +76,7 @@ const navigate = useNavigate()
                 >
                   <option value="To-Do">To-Do</option>
                   <option value="In Progress">In Progress</option>
-                  <option value="Done">Done</option>
+                  <option value="Done">Completed</option>
                 </select>
     
                 {/* Buttons */}
@@ -84,10 +84,10 @@ const navigate = useNavigate()
       
                   <button
                     type="submit"
-                    className="px-3 py-2 bg-blue-500 text-white rounded"
+                    className="px-3 py-2 bg-[#2c918b] text-white rounded"
                     disabled={loading}
                   >
-                    {loading ? "Adding..." : "Add Task"}
+                    {loading ? "Adding..." : "Add "}
                   </button>
                 </div>
               </form>

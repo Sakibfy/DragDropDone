@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: 'https://task-haven-server.vercel.app'
+  baseURL: 'https://drag-drop-done-server.vercel.app'
 })
 const useAxiosPublic = () => {
 

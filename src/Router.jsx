@@ -11,6 +11,7 @@ import Login from "./Auth/Login";
 import TaskBoard from "./Dashboard/MiniSidebar/TaskBoard";
 import AddTask from "./Dashboard/AddTask";
 import PrivateRoute from "./Provider/PrivateRoute/PrivateRoute";
+import Singup from "./Auth/Singup";
 
 
 
@@ -41,10 +42,12 @@ export const router = createBrowserRouter([
      path: '/login',
      element: <Login></Login>
    },
+   {
+     path: '/singup',
+     element: <Singup></Singup>
+   },
   
-   
   
-     // dashboard
   
  
 ]);

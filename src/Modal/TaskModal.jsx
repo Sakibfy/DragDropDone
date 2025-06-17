@@ -1,13 +1,24 @@
+// TaskModal.jsx
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import useAxiosPublic from "../hook/useAxiosPublic";
+
+const backdrop = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
+};
+
+const modal = {
+  hidden: { y: "-100vh", opacity: 0, scale: 0.8 },
+  visible: { y: "0", opacity: 1, scale: 1, transition: { type: "spring", stiffness: 300, damping: 25 } },
+  exit: { y: "100vh", opacity: 0, transition: { ease: "easeInOut" } }
+};
 
 const TaskModal = ({ isOpen, closeModal, task, onUpdate }) => {
   const axiosPublic = useAxiosPublic();
-
-  // Initialize state with task values, and update if task changes.
-  const [title, setTitle] = useState(task?.title || "");
-  const [description, setDescription] = useState(task?.description || "");
-  const [category, setCategory] = useState(task?.category || "To-Do");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("To-Do");
 
   useEffect(() => {
     if (task) {
@@ -19,64 +30,81 @@ const TaskModal = ({ isOpen, closeModal, task, onUpdate }) => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-
     try {
       const updatedTask = { title, description, category };
       await axiosPublic.put(`/tasks/${task._id}`, updatedTask);
-
       onUpdate({ ...task, ...updatedTask });
-
-      closeModal(); // Close modal after update
-    } catch (error) {
-      console.error("Error updating task:", error);
+      closeModal();
+    } catch (err) {
+      console.error("Update error:", err);
     }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-5 rounded-lg shadow-lg w-96">
-        <h2 className="text-2xl font-bold mb-3 text-center">Edit Task</h2>
-        <form onSubmit={handleUpdate} >
-          <input
-            type="text"
-            placeholder="Task Title"
-            className="w-full p-2 border rounded-xl my-2"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <textarea
-            placeholder="Task Description"
-            className="w-full p-2 border rounded-xl mb-2"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <select
-            className="w-full p-2 border rounded-xl my-2"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center p-4 z-50"
+          variants={backdrop}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          onClick={closeModal}
+        >
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-2xl w-full max-w-md relative"
+            variants={modal}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onClick={(e) => e.stopPropagation()}
           >
-            <option value="To-Do">To-Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
-          <div className="flex justify-end gap-2 mt-3">
-            <button
-              type="button"
-              onClick={closeModal}
-              className="px-4 py-2 bg-red-500 text-white rounded"
-            >
-              Cancel
-            </button>
-            <button type="submit" className="px-4 py-2 bg-[#10b981] text-white rounded">
-              Update Task
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 text-center">Edit Task</h2>
+            <form onSubmit={handleUpdate} className="space-y-4">
+              <input
+                type="text"
+                className="w-full  text-white px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-100 dark:bg-gray-700"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Task Title"
+                required
+              />
+              <textarea
+                className="w-full px-4  text-white py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-100 dark:bg-gray-700"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Task Description"
+                rows={3}
+              />
+              <select
+                className="w-full px-4 py-2 text-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-gray-100 dark:bg-gray-700"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option>To-Do</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+              </select>
+              <div className="flex justify-end gap-3 mt-6">
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="px-4 py-2 rounded-lg bg-red-500 hover:bg-red-600 text-white transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-lg bg-[#2c918b]  text-white transition"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

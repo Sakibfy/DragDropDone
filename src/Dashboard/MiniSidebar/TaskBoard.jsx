@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hook/useAxiosPublic";
 
 
-const categories = ["To-Do", "In Progress", "Done"];
+const categories = ["To-Do", "In Progress", "Completed"];
 
 const TaskBoard = () => {
   const [tasks, setTasks, refetch] = useTashBoard(); 
@@ -79,22 +79,22 @@ const TaskBoard = () => {
     <div className="w-11/12 m-auto md:my-20 my-7">
       <div className="text-end mb-5">
         <Link to="/addtask">
-          <button className="p-3 rounded-xl bg-[#10b981] text-white">Add Task</button>
+          <button className="p-3 rounded-xl font-bold bg-[#2c918b] text-white">Add Task</button>
         </Link>
       </div>
 
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="md:flex gap-6  w-full mx-auto">
+        <div className="md:flex gap-6   w-full mx-auto">
           {categories.map((category) => (
             <Droppable key={category} droppableId={category}>
               {(provided) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="md:w-1/3 bg-gray-300 my-5 p-4 rounded"
+                  className="md:w-1/3 bg-[#2c918b]  my-5 p-4 rounded"
                 >
-                  <h2 className="text-lg text-center font-bold mb-2 ">{category}</h2>
-                  <hr c className="my-2"/>
+                  <h2 className="text-lg text-white text-center font-bold mb-2 ">{category}</h2>
+                  <hr  className="my-2"/>
                   {tasks
                     .filter((task) => task.category === category)
                     .map((task, index) => (
@@ -104,14 +104,14 @@ const TaskBoard = () => {
            ref={provided.innerRef}
            {...provided.draggableProps}
            {...provided.dragHandleProps}
-           className="bg-blue-200 text-center space-y-3 p-3 rounded shadow mb-2 md:h-[180px] "
+           className="bg-blue-100 text-left space-y-4 p-3 rounded shadow mb-2 md:h-[180px] "
          >
-           <h3 className="font-semibold text-xl">{task.title}</h3>
-           <p className="text-[17px] text-gray-700">{task.description}</p>
-           <p className="text-sm text-gray-600">
-             {new Date(task.timestamp).toLocaleString()}
+           <h3 className="font-semibold text-xl"><span className="underline">Title:</span> {task.title}</h3>
+           <p className="text-[17px] text-gray-900"><span className="underline">Description</span>
+           : {task.description}</p>
+           <p className="text-sm text-gray-900"><span className="underline">Date:</span> {new Date(task.timestamp).toLocaleString()}
            </p>
-           <div className="flex mt-3 justify-between">
+           <div className="flex mt-3 gap-4 ">
              <button
                onClick={() => {
                  setSelectedTask(task);
@@ -119,10 +119,10 @@ const TaskBoard = () => {
                  setTasks(setTasks)
                }}
              >
-               <TbEdit className="text-xl text-yellow-500" />
+               <TbEdit className="text-2xl " />
              </button>
              <button onClick={() => handleDelete(task._id)}>
-               <MdDelete className="text-xl text-red-600" />
+               <MdDelete className="text-2xl text-red-600" />
              </button>
            </div>
          </div>
