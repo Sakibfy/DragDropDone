@@ -1,4 +1,4 @@
-# 📦 TaskFlow – Smart Kanban Board
+# 📦 DragDropDone – Smart Kanban Board
 
 ## 🚀 Project Overview
 **TaskFlow** is a MERN‑stack Kanban board app designed for task management with smooth drag‑and‑drop interfaces. Users can register, log in, and organize tasks across **To Do**, **In Progress**, and **Completed** columns.
